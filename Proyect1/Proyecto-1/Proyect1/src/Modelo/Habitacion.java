@@ -44,11 +44,8 @@ public class Habitacion
 		
 	}
 	
-	public void generarTextoFactura(String nombreArchivo, String cliente, String producto, double precio, int cantidad)
+	public static void generarTextoFactura(String nombreArchivo, String cliente, String producto, double precio, int cantidad)
 	{
-		try {
-			
-		
 		File file 	= new File(nombreArchivo + "txt");
 		
 		if (file.createNewFile())
@@ -58,20 +55,13 @@ public class Habitacion
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		
-		writer.write("Factura\n");
+		writer.write("Factura\n\n");
 		writer.write("Número habitación: " + numero);
 		writer.write("Nombre: " + nombre);
 		writer.write("Capacidad: " + capacidad);
 		writer.write("Ubicación: " + ubicacion);
 		writer.write("Precio totales: $"+ registroConsumos + "\n");
 		writer.close();
-		
-		}
-		catch (IOException e)
-		{
-			System.out.println("Error writing from the standard input");
-			e.printStackTrace();
-		}
 		
 		
 	}

@@ -1,5 +1,6 @@
 package Modelo;
 
-public class CoordinadorInventario {
+public class CoordinadorInventario 
+{
 
 }
