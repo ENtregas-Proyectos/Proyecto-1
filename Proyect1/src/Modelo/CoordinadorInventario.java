@@ -14,59 +14,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-public class CoordinadorInventario {
+public class Inventario {
 	private Hashtable<String, Habitacion> listaHabitaciones = new Hashtable<String , Habitacion>();
 	 File Cuartos= new File("./data/Habitaciones.txt");
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Inventario consola = new Inventario();
-		System.out.println("Menu Administrador ");
-		boolean continuar= true;
-		consola.iniciar();
-		while (continuar) {
-			consola.mostrarMenu();
-			int opcion = Integer.parseInt(input("Por favor seleccione una opción:"));
-			if (opcion ==1 ) {
-				consola.vaciarArchico();
-				consola.crearInventario();
-			}
-			else if (opcion ==2 ) {
-				consola.cargarCuartos();
-				consola.escribirArchivo();
-			}
-			else if (opcion == 3 ) {
-				consola.AgregarCuarto();
-				consola.escribirArchivo();
-			}
-			else if (opcion == 4 ) {
-				consola.modificarCuarto();
-				consola.escribirArchivo();
-			}
-			else if (opcion == 5) {
-				consola.cargarTarifa();
-				consola.escribirArchivo();
-			}
-			else if (opcion == 6 ) {
-				consola.consultarInventario();
-			}
-			else if (opcion == 7 ) {
-				consola.consultarHabitacion();	
-			}
-			else if (opcion ==8 ) {
-				//FALTA ESTO
-			}
-			else if (opcion==9) {
-				continuar = false;
-				System.out.println("Saliendo");
-			}
-			
-		}
-		
-		
-		
-	}
-	private void mostrarMenu() {
+	
+	public void mostrarMenu() {
 		System.out.println("\n1. Crear inventario de Habitaciones \t\t (Si crea un inventario se borra el inventario anterior)"); 
 		System.out.println("2. Cargar archivo de Habitaciones"); //ya
 		System.out.println("3. Cargar Habitacion Manualmente ");//ya
@@ -118,7 +71,7 @@ public class CoordinadorInventario {
 		return TamanosCamas;
 		
 	}
-	private void AgregarCuarto() {
+	public void AgregarCuarto() {
 		boolean continuar = true;
 		System.out.println("Añadir Cuarto Manualmente");
 		while (continuar) {
@@ -139,7 +92,7 @@ public class CoordinadorInventario {
 		
 		
 	}
-	private void modificarCuarto() {
+	public void modificarCuarto() {
 		String viejo = input("Cual es el nombre de la habitacion que desea modificar?");
 		Habitacion aModificar = listaHabitaciones.get(viejo);
 		mostrarHabitacion(aModificar);
@@ -274,7 +227,7 @@ public class CoordinadorInventario {
 	public void crearInventario() {
 		listaHabitaciones.clear();
 	}
-	private void iniciar() {
+	public void iniciar() {
 		File inventario= new File("./data/Inventario.txt");
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(inventario));
@@ -303,7 +256,7 @@ public class CoordinadorInventario {
 			e.printStackTrace();
 		}
 	}
-	private void vaciarArchico() {
+	public void vaciarArchico() {
 		String data = "";
 
 	    try {
@@ -325,3 +278,4 @@ public class CoordinadorInventario {
 	    }
 	}
 }
+
