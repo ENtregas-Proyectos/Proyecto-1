@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import Inventario.Administrador;//ESTO
-import Inventario.Hotel;//ESTO
+import Modelo.Administrador;//ESTO
+import Modelo.Hotel;//ESTO
 
 
 public class Aplicacion {
