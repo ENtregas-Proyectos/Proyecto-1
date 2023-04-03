@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Hotel {
-	public Inventario inventario = new Inventario();
+	public CoordinadorInventario inventario = new Inventario();
 
 	public void aplicacionAdministrador() {
 		System.out.println("Menu Administrador ");
