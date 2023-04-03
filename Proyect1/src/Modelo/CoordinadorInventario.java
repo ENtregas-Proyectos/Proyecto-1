@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-public class Inventario {
+public class CoordinadorInventario {
 	private Hashtable<String, Habitacion> listaHabitaciones = new Hashtable<String , Habitacion>();
 	 File Cuartos= new File("./data/Habitaciones.txt");
 
