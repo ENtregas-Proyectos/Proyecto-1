@@ -79,7 +79,8 @@ public class CoordinadorDeServicios
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a numero de habitacion");
-		while (continuar) {
+		while (continuar) 
+		{
 			System.out.println("Cual es el numero de la habitacion?");
 			 String nombre = input(" ");
 			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
@@ -87,7 +88,21 @@ public class CoordinadorDeServicios
 			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado,srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 continuar=false;
+			 String rta = input("Desea realizar su pago en este momento? ");
+			 if (rta == "si")
+			 {
+				 RegistrarPago();
+				 continuar = false;
+				 
+			 }
+			 
+			 else if(rta == "no")
+			 {
+				 continuar = false;
+			 }
+				 
+			 
+			 
 	}
 	}
 	
@@ -103,7 +118,23 @@ public class CoordinadorDeServicios
 			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 continuar=false;
+			 boolean continuar2 = true;
+			 while(continuar2) {
+			 String rta = input("Desea realizar su pago en este momento? ");
+			 if (rta == "si")
+			 {
+				 RegistrarPago();
+				 continuar2 = false;
+				 
+			 }
+			 
+			 else if(rta == "no")
+			 {
+				 continuar2 = false;
+			 }
+			 }
+			 
+			 continuar = false;
 	}
 	}
 	
