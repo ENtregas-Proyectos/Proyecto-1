@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import Modelo.Administrador;//ESTO
 import Modelo.Hotel;//ESTO
+import Modelo.Trabajador;
 
 
 public class Aplicacion {
 	public Hotel hotel = new Hotel();
 	private static ArrayList<Administrador> listaAdministradores= new ArrayList<Administrador>();
+	private static ArrayList<Trabajador>listaTrabajadores = new ArrayList<Trabajador>();
 	
 	public static void main(String[] args) {
 		Aplicacion consola = new Aplicacion();
@@ -53,7 +55,8 @@ public class Aplicacion {
 			listaAdministradores.add(nuevo);
 		}
 		else if (opcion ==2 ) {
-			// NUEVO RECEPCIONISTA
+			Trabajador nuevo = new Trabajador(nombre,login,clave);
+			listaTrabajadores.add(nuevo);
 		}
 		else if (opcion ==3 ) {
 			// OTRO!!!!
@@ -82,7 +85,17 @@ public class Aplicacion {
 			}
 		}
 		else if (opcion ==2) {
-				// LOG IN DE RECEPCIONISTA
+			for (int a =0 ; a<listaTrabajadores.size();a++) 
+			{
+				if (listaTrabajadores.get(a).darLogin().equals(login) && listaTrabajadores.get(a).darClave().equals(clave)) {
+					System.out.println("Bienvenido"); 
+					encontrado= true;
+				}
+			}
+			if (encontrado ==true) 
+			{
+				aplicacionParaServicios();
+			}
 			}
 		else if (opcion ==3) {
 			// LOG IN DE OTROS 
@@ -94,6 +107,13 @@ public class Aplicacion {
 	
 	public void AplicacionAdministrador() {
 		hotel.aplicacionAdministrador();
+		
+	}
+
+	
+	public void aplicacionParaServicios() 
+	{
+		hotel.aplicacionParaServicios();
 		
 	}
 	public static String input(String mensaje)
