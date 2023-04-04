@@ -92,7 +92,6 @@ public class CoordinadorDeServicios
 			 if (rta == "si")
 			 {
 				 RegistrarPago();
-				 continuar = false;
 				 
 			 }
 			 
@@ -101,7 +100,6 @@ public class CoordinadorDeServicios
 				 continuar = false;
 			 }
 				 
-			 
 			 
 	}
 	}
@@ -118,23 +116,18 @@ public class CoordinadorDeServicios
 			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 boolean continuar2 = true;
-			 while(continuar2) {
 			 String rta = input("Desea realizar su pago en este momento? ");
 			 if (rta == "si")
 			 {
 				 RegistrarPago();
-				 continuar2 = false;
 				 
 			 }
 			 
 			 else if(rta == "no")
 			 {
-				 continuar2 = false;
-			 }
+				 continuar = false;
 			 }
 			 
-			 continuar = false;
 	}
 	}
 	
@@ -309,4 +302,3 @@ public void iniciar() {
 
 
 }
-
