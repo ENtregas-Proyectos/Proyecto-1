@@ -25,15 +25,31 @@ public class CoordinadorDeServicios
 	{
 		System.out.println("\n1. Crear servicios \t\t (Si crea unos servicios se borra el servicio anterior)"); 
 		System.out.println("2. Cargar archivo de Servicios"); 
-		System.out.println("3. Agregar servicio a una habitación");
-		System.out.println("4. Agregar servicio a un huesped"); 
-		System.out.println("5. Registrar pago ");
-		System.out.println("6. Consultar Servicios");
-		System.out.println("7. Consultar cuenta habitacion ");
-		System.out.println("8.Salir\n\n");
+		System.out.println("3. Agregar servicio de manera manual");
+		System.out.println("4. Agregar servicio a una habitación");
+		System.out.println("5. Agregar servicio a un huesped"); 
+		System.out.println("6. Registrar pago ");
+		System.out.println("7. Consultar Servicios");
+		System.out.println("8. Consultar cuenta habitacion ");
+		System.out.println("9.Salir\n\n");
+
 		
 		
 		
+	}
+	
+	public void AgregarServicio() 
+	{
+		boolean continuar = true;
+		System.out.println("Añadir servicio de namera manual");
+		while (continuar) {
+			System.out.println("Digite el nombre del servicio");
+			 String nombre = input(" ");
+			 int precio = Integer.parseInt(input("Digite el precio del servicio"));
+			 Servicio nuevo = new Servicio(nombre, precio);
+			 listaServicios.put(nombre, nuevo);
+			 continuar=false;
+	}
 	}
 	
 	public void cargarServicios() {
@@ -134,8 +150,6 @@ private void mostrarServicio(Servicio aBuscar)
 	System.out.println("Precio: "+aBuscar.getPrecio());
 
 }
-
-
 
 
 public Factura generarFactura(Servicio servicio)
