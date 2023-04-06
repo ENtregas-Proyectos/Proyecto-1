@@ -253,9 +253,18 @@ private String escribirServicios() {
 }
 
 
+public void mostrarConsumo(Consumo aBuscar) 
+{
+	System.out.println("Los consumos de la habitacion: "+aBuscar.getNombre()+ " son: ");
+	System.out.println(aBuscar.getPrecio());
+
+}
+
 public void consultarCuentaHabitacion() 
 {
-	// TODO Auto-generated method stub
+		Consumo aBuscar = listaConsumos.get(input("Cual es el nombre del cuarto que desea consultar? "));
+		mostrarConsumo(aBuscar);
+		
 	
 }
 
