@@ -5,6 +5,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Habitacion 
 {	
@@ -17,6 +21,7 @@ public class Habitacion
 	private String tipo;
 	private String Extra; 
 	private String tarifa;
+	private Map<LocalDate, Boolean> availability = new HashMap<>();
 	
 	public Habitacion (String nombre,String ubicacion, int capacidad, int camas, ArrayList<String> Tamano, String tipo, String Extra, String tarifa)
 	{
@@ -28,6 +33,10 @@ public class Habitacion
 		this.tipo=tipo;
 		this.Extra=Extra;
 		this.tarifa=tarifa;
+		LocalDate date = LocalDate.now();
+		for (int i = 0; i < 730; i++) {
+            availability.put(date.plusDays(i), true);
+        }
 	}
 	
 	
@@ -105,30 +114,28 @@ public class Habitacion
 	private double getConsumos()
 	{
 		return registroConsumos;
-		
 	}
 	
-	public static void generarTextoFactura(String nombreArchivo, String cliente, String producto, double precio, int cantidad)
-	{
-		File file 	= new File(nombreArchivo + "txt");
-		
-		if (file.createNewFile())
-			System.out.println("File created: " + file.getName());
-		else
-			System.out.println("File already exists.");
-		
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		
-		writer.write("Factura\n\n");
-		writer.write("Número habitación: " + numero);
-		writer.write("Nombre: " + nombre);
-		writer.write("Capacidad: " + capacidad);
-		writer.write("Ubicación: " + ubicacion);
-		writer.write("Precio totales: $"+ registroConsumos + "\n");
-		writer.close();
-		
-		
-	}
+	public boolean verificarDisponibilidad(LocalDate startDate, LocalDate endDate) {
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+            if (!availability.get(date)) {
+                return false;
+            }
+        }
+        return true;
+    }
 	
-
+	public void blockearDisponibilidad(LocalDate fechaInicial, LocalDate fechaFinal) {
+        for (LocalDate date = fechaInicial; date.isBefore(fechaFinal); date = date.plusDays(1)) {
+            availability.put(date, false);
+        }
+    }
+	
+	public void desbloquearDisponibilidad(LocalDate fechaInicial, LocalDate fechaFinal) {
+        for (LocalDate date = fechaInicial; date.isBefore(fechaFinal); date = date.plusDays(1)) {
+            availability.put(date, true);
+        }
+    }
+	
+	
 }

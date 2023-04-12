@@ -3,6 +3,7 @@ package Modelo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 
 public class Hotel 
 {
@@ -31,27 +32,23 @@ public class Hotel
 				inventario.escribirArchivo();
 			}
 			else if (opcion == 4 ) {
-				inventario.AgregarServicio();
-				inventario.escribirArchivo();
-			}
-			else if (opcion == 5 ) {
 				inventario.modificarCuarto();
 				inventario.escribirArchivo();
 			}
-			else if (opcion == 6) {
+			else if (opcion == 5) {
 				inventario.cargarTarifa();
 				inventario.escribirArchivo();
 			}
-			else if (opcion == 7 ) {
+			else if (opcion == 6) {
 				inventario.consultarInventario();
 			}
-			else if (opcion == 8 ) {
+			else if (opcion == 7 ) {
 				inventario.consultarHabitacion();	
 			}
-			else if (opcion ==9 ) {
+			else if (opcion ==8 ) {
 				//FALTA ESTO
 			}
-			else if (opcion==10) {
+			else if (opcion==9) {
 				continuar = false;
 				System.out.println("Saliendo");
 			}
@@ -105,6 +102,53 @@ public class Hotel
 			}
 		}
 	}
+	
+	public void aplicacionRecepcionista() {
+		System.out.println("\n*********** MENU RECEPCIONISTA ***********\n ");
+		CoordinadorDeReservas coordinadorDeReservas = new CoordinadorDeReservas();
+		boolean continuar= true;
+		while (continuar) {
+			coordinadorDeReservas.mostrarMenuRecepcionista();
+			int opcion = Integer.parseInt(input("POR FAVOR SELECCIONE UNA OPCION: "));
+			if (opcion ==1 ) {
+				String nombreHuesped = input("\nNombre Huesped: \n");
+				String documentoIdentidad = input("Documento Identidad Huesped: \n");
+				String numeroCelular = input("Numero Celular Huesped: \n");
+				String correoElectronico = input("Correo Electronico Huesped: \n");
+				int cantidadPersonas =  Integer.parseInt(input("cantidad personas: \n"));
+				LocalDate fechaEntrada = LocalDate.parse(input("Ingrese la fecha de entrada en formato Y-M-D (ejemplo 2023-02-01): \n"));
+				LocalDate fechaSalida = LocalDate.parse(input("Ingrese la fecha de salida en formato Y-M-D(ejemplo 2023-02-01): \n"));
+				Habitacion habitacion = coordinadorDeReservas.encontrarHabitacionReserva(fechaEntrada, fechaSalida, cantidadPersonas);
+				coordinadorDeReservas.crearReserva(nombreHuesped,documentoIdentidad,correoElectronico,numeroCelular, cantidadPersonas, habitacion, fechaEntrada, fechaSalida);
+			}
+			else if (opcion ==2 ) {
+				String nombreHuesped = input("\nIngrese el nombre del Huesped: ");
+				String numeroHabitacion = input("\nIngrese el numero de la habitacion: ");
+				coordinadorDeReservas.cancelarReserva(nombreHuesped, numeroHabitacion);
+				
+			}
+			else if (opcion == 3 ) {
+				LocalDate fechaInicio= LocalDate.parse(input("Ingrese la fecha de entrada en el formato Y-M-D"));
+				LocalDate fechaFinal= LocalDate.parse(input("Ingrese la fecha de salida en el formato Y-M-D"));
+				int cantidadPersonas= Integer.parseInt(input("Ingrese la fecha de entrada en el formato Y-M-D"));
+				Habitacion habitacion = coordinadorDeReservas.encontrarHabitacionReserva(fechaInicio, fechaFinal, cantidadPersonas);
+				Boolean disponibilidad = coordinadorDeReservas.checkearDisponibilidad(habitacion, fechaInicio, fechaFinal);
+				
+				if (disponibilidad) {
+					System.out.println("Si hay disponibiliodad en la habitacion seleccionada");
+				}
+				else {
+					System.out.println("no hay disponibilidad en la habitacion deseada");
+					
+				}
+			}
+			else if (opcion==4) {
+				continuar = false;
+				System.out.println("Saliendo");
+			}
+		}
+	}
+			
 	public static String input(String mensaje)
 	{
 		try
@@ -126,11 +170,14 @@ public class Hotel
 		inventario.iniciar();
 
 	}
-	
+
 	public void iniciarappServicio()
 	{
 		servicio.iniciar();
 	}
+	
+	
+	
 }
 
 

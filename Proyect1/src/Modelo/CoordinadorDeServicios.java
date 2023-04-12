@@ -101,7 +101,7 @@ public class CoordinadorDeServicios
 			 }
 				 
 			 
-	}
+		}
 	}
 	
 	public void AgregarServicioAHuesped() 

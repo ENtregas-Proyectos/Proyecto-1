@@ -15,8 +15,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class CoordinadorInventario {
-	private Hashtable<String, Habitacion> listaHabitaciones = new Hashtable<String , Habitacion>();
-	 File Cuartos= new File("./data/Habitaciones.txt");
+	public static Hashtable<String, Habitacion> listaHabitaciones = new Hashtable<String , Habitacion>();
+	 File Cuartos= new File("./Proyect1/data/Habitaciones.txt");
 
 	
 	public void mostrarMenu() {
@@ -197,7 +197,7 @@ public class CoordinadorInventario {
 
 	    try {
 	      // Creates a FileWriter
-	      FileWriter file = new FileWriter("./data/Inventario.txt");
+	      FileWriter file = new FileWriter("./Proyect1/data/Inventario.txt");
 
 	      // Creates a BufferedWriter
 	      BufferedWriter output = new BufferedWriter(file);
@@ -228,7 +228,7 @@ public class CoordinadorInventario {
 		listaHabitaciones.clear();
 	}
 	public void iniciar() {
-		File inventario= new File("./data/Inventario.txt");
+		File inventario= new File("./Proyect1/data/Inventario.txt");
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(inventario));
 			String linea = br.readLine();

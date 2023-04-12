@@ -6,12 +6,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import Modelo.Administrador;//ESTO
 import Modelo.Hotel;//ESTO
+import Modelo.Recepcionista;
 import Modelo.Trabajador;
 
 
 public class Aplicacion {
 	public Hotel hotel = new Hotel();
 	private static ArrayList<Administrador> listaAdministradores= new ArrayList<Administrador>();
+	private static ArrayList<Recepcionista> listaRecepcionista= new ArrayList<Recepcionista>();
 	private static ArrayList<Trabajador>listaTrabajadores = new ArrayList<Trabajador>();
 	
 	public static void main(String[] args) {
@@ -44,22 +46,20 @@ public class Aplicacion {
 		System.out.println("3. Cerrar Aplicacion"); 
 	}
 	public void crearCuenta() {
-		String nombre = input ("Ingrese su nombre: ");
-		String login = input ("Ingrese su login: ");
-		String clave = input ("Ingrese su clave: ");
+		String nombre = input ("\nIngrese su nombre: \n");
+		String login = input ("Ingrese su login: \n");
+		String clave = input ("Ingrese su clave: \n");
 		System.out.println("Porfavor Seleccione el tipo de empleado ");
-		System.out.println("1. Administrador \n2. Recepcionista \n3. Otro");
+		System.out.println("1. Administrador \n2. Recepcionista \n3.Otro");
 		int opcion = Integer.parseInt(input(""));
 		if (opcion ==1 ) {
 			Administrador nuevo = new Administrador(nombre,login,clave);
 			listaAdministradores.add(nuevo);
 		}
 		else if (opcion ==2 ) {
-			Trabajador nuevo = new Trabajador(nombre,login,clave);
-			listaTrabajadores.add(nuevo);
-		}
-		else if (opcion ==3 ) {
-			// OTRO!!!!
+			Recepcionista nuevo = new Recepcionista(nombre,login,clave);
+			listaRecepcionista.add(nuevo);
+
 		}
 		else {
 			System.out.println("Opcion no valida ");
@@ -68,14 +68,14 @@ public class Aplicacion {
 	}
 	public void iniciarSesion() {
 		boolean encontrado = false;
-		System.out.println("Porfavor Seleccione el tipo de empleado ");
-		System.out.println("1. Administrador \n2. Recepcionista \n3. Otro");
+		System.out.println("Porfavor Seleccione el tipo de empleado:\n ");
+		System.out.println("1. Administrador \n2. Recepcionista \n3. Otro\n");
 		int opcion = Integer.parseInt(input(""));
-		String login = input("Ingrese su login ");
-		String clave = input("ingrese su clave ");
+		String login = input("Ingrese su login:  ");
+		String clave = input("Ingrese su clave:  ");
 		if (opcion ==1 ) {
 			for (int a =0 ; a<listaAdministradores.size();a++) {
-				if (listaAdministradores.get(a).darLogin().equals(login) && listaAdministradores.get(a).darClave().equals(clave)) {
+				if (listaAdministradores.get(a).getLogin().equals(login) && listaAdministradores.get(a).getClave().equals(clave)) {
 					System.out.println("Bienvenido"); 
 					encontrado= true;
 				}
@@ -85,16 +85,16 @@ public class Aplicacion {
 			}
 		}
 		else if (opcion ==2) {
-			for (int a =0 ; a<listaTrabajadores.size();a++) 
+			for (int a =0 ; a<listaRecepcionista.size();a++) 
 			{
-				if (listaTrabajadores.get(a).darLogin().equals(login) && listaTrabajadores.get(a).darClave().equals(clave)) {
+				if (listaRecepcionista.get(a).getLogin().equals(login) && listaRecepcionista.get(a).getClave().equals(clave)) {
 					System.out.println("Bienvenido"); 
 					encontrado= true;
 				}
 			}
 			if (encontrado ==true) 
 			{
-				aplicacionParaServicios();
+				aplicacionRecepcionista();
 			}
 			}
 		else if (opcion ==3) {
@@ -110,7 +110,9 @@ public class Aplicacion {
 		
 	}
 
-	
+	public void aplicacionRecepcionista() {
+		hotel.aplicacionRecepcionista();
+	}
 	public void aplicacionParaServicios() 
 	{
 		hotel.aplicacionParaServicios();
